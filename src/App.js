@@ -3,6 +3,8 @@ import Authentication from "./Pages/Authentication/Authentication";
 
 import "./App.css"
 
+window.API_URL = "http://localhost:8080/api";
+
 function App() {
   return (
       <Router>

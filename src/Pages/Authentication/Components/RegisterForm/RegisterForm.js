@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import './RegisterForm.css';
 import Validate from './../../../../Classes/Validate';
 import User from './../../../../Classes/User';
@@ -96,22 +96,23 @@ function RegisterForm(props) {
     //     props.switchToLogin(true);
     // }
 
-    function signUp() {
-        if (!validateFields()) {
-            setRegisterFormErrors("Please fill in all the fields")
-            return;
-        }
+    function signUp(e) {
+        e.preventDefault();
+        // if (!validateFields()) {
+        //     setRegisterFormErrors("Please fill in all the fields")
+        //     return;
+        // }
 
         setLoadingAnimation(true);
 
         let user = new User();
-        user.firstName = formData.register_first_name.value;
-        user.lastName = formData.register_last_name.value;
-        user.email = formData.register_email.value;
-        user.password = formData.register_password.value;
-        user.register(()=>{
+        user.firstName = "asdf";
+        user.lastName = "Asdfasd";
+        user.email = "asdfa@asfdasd.fasdfa";
+        user.password = "asdfasdfasfas1234";
+        user.register(() => {
 
-        }, ()=>{
+        }, () => {
 
         });
     }
@@ -134,39 +135,41 @@ function RegisterForm(props) {
             <div className={`form register-form ${registerFormState}`}>
                 <div className={"inner-form"}>
                     <h2>Sign up</h2>
-                    <InputField
-                        id="register_first_name"
-                        name="First Name"
-                        variation="half"
-                        validation={[Validate.isNotEmpty, Validate.containsOnlyLetters]}
-                    />
-                    <InputField
-                        id="register_last_name"
-                        name="Last Name"
-                        variation="half"
-                        validation={[Validate.isNotEmpty, Validate.containsOnlyLetters]}
-                    />
-                    <InputField
-                        id="register_email"
-                        name="E-mail"
-                        validation={Validate.isEmail}
-                    />
-                    <InputField
-                        id="register_password"
-                        name="Password"
-                        type="password"
-                        validation={[Validate.isNotEmpty, Validate.hasAtLeast8Chars, Validate.containsNumber]}
-                    />
-                    <SubmitButton text="Sign up" callback={signUp} />
-                    <span className={`errors ${registerFormErrors == null ? "hidden" : ""}`}>{registerFormErrors}</span>
-                    <a className="form-link" onClick={()=>{
-                        props.setCurrentForm("login");
-                    }}>
-                        Already have an account? Log in here
-                    </a>
+                    <form onSubmit={signUp}>
+                        <InputField
+                            id="register_first_name"
+                            name="First Name"
+                            variation="half"
+                            validation={[Validate.isNotEmpty, Validate.containsOnlyLetters]}
+                        />
+                        <InputField
+                            id="register_last_name"
+                            name="Last Name"
+                            variation="half"
+                            validation={[Validate.isNotEmpty, Validate.containsOnlyLetters]}
+                        />
+                        <InputField
+                            id="register_email"
+                            name="E-mail"
+                            validation={Validate.isEmail}
+                        />
+                        <InputField
+                            id="register_password"
+                            name="Password"
+                            type="password"
+                            validation={[Validate.isNotEmpty, Validate.hasAtLeast8Chars, Validate.containsNumber]}
+                        />
+                        <SubmitButton text="Sign up"/>
+                        <span
+                            className={`errors ${registerFormErrors == null ? "hidden" : ""}`}>{registerFormErrors}</span>
+                        <a className="form-link" onClick={() => {
+                            props.setCurrentForm("login");
+                        }}>
+                            Already have an account? Log in here
+                        </a>
+                    </form>
 
-
-                    <LoadingAnimation state={showLoadingAnimation} />
+                    <LoadingAnimation state={showLoadingAnimation}/>
                 </div>
             </div>
         </>

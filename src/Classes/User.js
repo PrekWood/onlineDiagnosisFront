@@ -33,7 +33,6 @@ export default class User extends Model {
         return userObj;
     }
 
-
     login(successMethod, errorMethod, registerResponse = null) {
         axios({
             method: 'post',
@@ -53,6 +52,7 @@ export default class User extends Model {
     register(successMethod, errorMethod) {
         const thisUser = this;
 
+        console.log( `${window.API_URL}/user`);
         // First Register
         axios({
             method: 'post',
