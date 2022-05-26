@@ -8,8 +8,8 @@ function InputField(props) {
 
     const [isValid, setValid] = useState(null);
     const [passwordVisible, setPasswordVisible] = useState(false);
-
     const [defaultValue, setDefaultValue] = useState(null);
+
     useEffect(()=>{
         setDefaultValue(props.defaultValue);
     },[props.defaultValue])
@@ -24,8 +24,6 @@ function InputField(props) {
     if ("type" in props) {
         inputType = props.type;
     }
-
-
 
     let variation = "";
     if ("variation" in props) {

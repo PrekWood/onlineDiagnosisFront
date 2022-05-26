@@ -12,7 +12,8 @@ function LoginForm(props) {
     // Hiding and showing animation 
     const [loginFormState, setLoginFormState] = useState(true);
     const [loadingAnimationStatus, setLoadingAnimationStatus] = useState(false);
-    const [errors, serErrors] = useState("");
+    const [errors, setErrors] = useState(null);
+
 
     useEffect(() => {
         if (props.isActive == null) {
@@ -24,50 +25,19 @@ function LoginForm(props) {
         }
     }, [props.isActive]);
 
-    // Register Submit
-    function handleErrors(error) {
-        console.log(error);
-    }
-
-    // // Dynamic calculation of top based on height
-    // useEffect(() => {
-    //     // Make the form appear
-    //     const loginForm = document.querySelector(".login-form");
-    //     const loginFormHeight = loginForm.clientHeight;
-    //     loginForm.style.top = `calc(50vh - ${loginFormHeight / 2}px)`;
-    //
-    //     // set CSS variable for the animation      
-    //     const cssScript = `<style>:root{--loginFormTop: ${loginFormHeight / 2}px}</style>`;
-    //     document.querySelector(".extra-css").innerHTML = cssScript;
-    // }, []);
-    //
-    // function switchToRegister() {
-    //     console.log("Login switchToRegister");
-    //     props.switchToRegister(false, false);
-    // }
-    //
-    // function shakeForm() {
-    //     setLoginFormState("invalid");
-    //     setTimeout(() => {
-    //         setLoginFormState("active-no-animation");
-    //     }, 300);
-    // }
-    //
-
 
     function submitLogin(event) {
         event.preventDefault();
 
-        return "";
         // Get form fields
         let email = null;
         let password = null;
         const formFields = event.target.elements;
         for (let formFieldIndex = 0; formFieldIndex < formFields.length; formFieldIndex++) {
-            if (formFields[formFieldIndex].id == "login_email") {
+            if (formFields[formFieldIndex].id === "login_email") {
                 email = formFields[formFieldIndex].value
             }
-            if (formFields[formFieldIndex].id == "login_password") {
+            if (formFields[formFieldIndex].id === "login_password") {
                 password = formFields[formFieldIndex].value
             }
         }
@@ -77,7 +47,7 @@ function LoginForm(props) {
             !Validate.isEmail(email) ||
             !Validate.isNotEmpty(password) || !Validate.hasAtLeast8Chars(password) || !Validate.containsNumber(password)
         ) {
-            alert('error');
+            setErrors("Invalid fields")
             return;
         }
 
@@ -87,11 +57,21 @@ function LoginForm(props) {
         const user = new User();
         user.email = email;
         user.password = password;
-        user.login(() => {
-
-        }, () => {
-
-        });
+        user.login(
+            () => {
+                setLoadingAnimationStatus(false);
+                props.setUser(user);
+                window.location.href="/symptoms";
+            },
+            (request) => {
+                setLoadingAnimationStatus(false);
+                if(Validate.isNotEmpty(request.response.data)){
+                    setErrors(request.response.data.error);
+                }else{
+                    setErrors("Something went wrong. Please try again")
+                }
+            }
+        );
     }
 
     return (
@@ -110,15 +90,18 @@ function LoginForm(props) {
                             type="password"
                             validation={[Validate.isNotEmpty, Validate.hasAtLeast8Chars, Validate.containsNumber]}/>
                         <SubmitButton text="Log in"/>
-                        <span className={`errors ${errors == "" ? "hidden" : ""}`}>{errors}</span>
                     </form>
-
+                    <span className={`errors ${errors == null ? "hidden" : ""}`}>
+                        {errors}
+                    </span>
                     <a className="form-link" onClick={() => {
                         props.setCurrentForm("register")
                     }}>
                         Dont't have an account? Sign up here
                     </a>
-                    {/*    <LoadingAnimation state={loadingAnimationStatus} />*/}
+
+
+                    <LoadingAnimation state={loadingAnimationStatus} />
                 </div>
             </div>
         </>

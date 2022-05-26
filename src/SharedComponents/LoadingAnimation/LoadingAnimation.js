@@ -10,10 +10,15 @@ function LoadingAnimation(props) {
 
     return <>
         <div className={`loading-animation ${state}`}>
-            <div className="loadingio-spinner-dual-ball-l96bgipof6">
-                <div className="ldio-tzqoa72rxz7">
-                    <div></div><div></div><div></div>
-                </div>
+            <div className="lds-roller">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
             </div>
         </div>
     </>

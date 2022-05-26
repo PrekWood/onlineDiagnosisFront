@@ -5,7 +5,7 @@ import Validate from "../../Classes/Validate";
 function SubmitButton(props) {
 
     let onClickFunction = () => { };
-    if ("callback" in props) {
+        if ("callback" in props) {
         onClickFunction = props.callback;
     }
 
