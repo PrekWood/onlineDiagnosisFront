@@ -13,9 +13,9 @@ export default class User extends Model {
         this.phoneNumber = null;
         this.firstName = null;
         this.lastName = null;
-        this.countryCodeId = null;
         this.id = null;
-        this.imagePath = null;
+        this.gender = null;
+        this.year = null;
     }
 
     static castToUser(user) {
@@ -28,8 +28,8 @@ export default class User extends Model {
         userObj.phoneNumber = user.phoneNumber;
         userObj.firstName = user.firstName;
         userObj.lastName = user.lastName;
-        userObj.countryCodeId = user.countryCodeId;
-        userObj.imagePath = user.imagePath;
+        userObj.gender = user.gender;
+        userObj.year = user.year;
         return userObj;
     }
 
@@ -53,7 +53,15 @@ export default class User extends Model {
     register(successMethod, errorMethod) {
         const thisUser = this;
 
-        console.log( `${window.API_URL}/user`);
+        console.log({
+            firstName: this.firstName,
+            lastName: this.lastName,
+            email: this.email,
+            password: this.password,
+            gender: this.gender,
+            year: this.year,
+        });
+
         // First Register
         axios({
             method: 'post',
@@ -63,7 +71,9 @@ export default class User extends Model {
                 firstName: this.firstName,
                 lastName: this.lastName,
                 email: this.email,
-                password: this.password
+                password: this.password,
+                gender: this.gender,
+                year: this.year,
             }
         }).then(function (response) {
             // Then Login
@@ -151,18 +161,22 @@ export default class User extends Model {
         return userToReturn;
     }
 
-    //
-    // getUserDetails(successMethod, errorMethod) {
-    //     axios({
-    //         method: 'get',
-    //         url: `${window.API_URL}/user/`,
-    //         headers: this.getHeaders(this.token),
-    //     }).then(function (response) {
-    //         successMethod(response);
-    //     }).catch(function (error) {
-    //         errorMethod(error);
-    //     });
-    // }
+    logout(successMethod, errorMethod) {
+        localStorage.setItem("loggedInUser", null);
+    }
+
+
+    getUserDetails(successMethod, errorMethod) {
+        axios({
+            method: 'get',
+            url: `${window.API_URL}/user/`,
+            headers: this.getHeaders(this.token),
+        }).then(function (response) {
+            successMethod(response);
+        }).catch(function (error) {
+            errorMethod(error);
+        });
+    }
     //
     // static getUserDetailsByEmail(email, successMethod, errorMethod) {
     //     const loggedInUser = User.loadUserFromLocalStorage();
@@ -240,20 +254,9 @@ export default class User extends Model {
     //     localStorage.setItem("sharedFilesContext", null);
     //     localStorage.setItem("sortingPreferences", null);
     // }
-    //
-    // logout(successMethod, errorMethod) {
-    //     axios({
-    //         method: 'post',
-    //         url: `${window.API_URL}/logout`,
-    //         headers: this.getHeaders(this.token),
-    //     }).then(function (response) {
-    //         User.clearDataFromLocalStorage();
-    //         successMethod(response);
-    //     }).catch(function (error) {
-    //         errorMethod(error);
-    //     });
-    // }
-    //
+
+
+
     // updateImage(fileToUpload, successMethod, errorMethod) {
     //     const formData = new FormData()
     //     formData.append("file", fileToUpload);

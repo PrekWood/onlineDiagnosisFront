@@ -1,0 +1,22 @@
+.body-part-list {
+    margin-left: 45px;
+    width: 30vw;
+}
+
+.body-part {
+    padding: 35px 25px;
+    font-size: 22px;
+    background: white;
+    border-bottom: 1px solid whitesmoke;
+    cursor: pointer;
+}
+
+
+.body-part:last-child {
+    border: unset;
+}
+
+.body-part:hover {
+    background: #C4C6FF;
+    color: white;
+}

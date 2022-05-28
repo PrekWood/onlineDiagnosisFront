@@ -47,5 +47,8 @@ export default class Validate {
     static has1Character(text) {
         return text.length == 1;
     }
+    static has4Characters(text) {
+        return text.length == 4;
+    }
 
 }

@@ -1,0 +1,56 @@
+.SymptomsList main {
+    background: #F2F4FF;
+    width: calc(100vw - 120px);
+    height: 100vh;
+    display: block;
+    margin-left: 120px;
+}
+
+.symptoms-header h2 {
+    margin-top: 0;
+    margin-bottom: 3px;
+    font-weight: normal;
+    font-size: 37px;
+}
+
+.symptoms-header {
+    padding: 45px;
+}
+
+.symptoms-header span {
+    font-size: 22px;
+    color: darkgrey;
+}
+
+.symptoms-selector {
+    display: flex;
+    align-items: flex-start;
+}
+.SymptomsList main {
+    background: #F2F4FF;
+    width: calc(100vw - 120px);
+    height: 100vh;
+    display: block;
+    margin-left: 120px;
+}
+
+.symptoms-header h2 {
+    margin-top: 0;
+    margin-bottom: 3px;
+    font-weight: normal;
+    font-size: 37px;
+}
+
+.symptoms-header {
+    padding: 45px;
+}
+
+.symptoms-header span {
+    font-size: 22px;
+    color: darkgrey;
+}
+
+.symptoms-selector {
+    display: flex;
+    align-items: flex-start;
+}

@@ -5,6 +5,8 @@ import "./App.css"
 import SymptomsList from "./Pages/SymptomsList/SymptomsList";
 
 window.API_URL = "http://localhost:8080/api";
+window.BACKEND_BASE_URL = "http://localhost:8080";
+window.FRONTEND_BASE_URL = "http://localhost:3000";
 
 function App() {
   return (

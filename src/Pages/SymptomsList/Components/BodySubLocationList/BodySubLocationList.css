@@ -1,0 +1,10 @@
+.body-sublocation-list .body-part {
+    background: #f7f7f7;
+}
+.body-sublocation-list {
+    width: 30vw;
+}
+
+.body-sublocation-list .body-part:hover {
+    background: #C4C6FF;
+}

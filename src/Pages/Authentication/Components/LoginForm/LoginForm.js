@@ -58,8 +58,11 @@ function LoginForm(props) {
         user.email = email;
         user.password = password;
         user.login(
-            () => {
+            (response) => {
                 setLoadingAnimationStatus(false);
+
+                user.token = response.data.token;
+                user.saveUserToLocalStorage();
                 props.setUser(user);
                 window.location.href="/symptoms";
             },

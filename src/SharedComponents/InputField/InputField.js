@@ -2,6 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import './InputField.css';
 import visibleSvg from './imgs/visible.svg';
 import hiddenSvg from './imgs/hidden.svg';
+import Validate from "../../Classes/Validate";
 
 
 function InputField(props) {
@@ -78,6 +79,7 @@ function InputField(props) {
                     placeholder={props.name}
                     defaultValue={defaultValue}
                     onKeyUp={onKeyUp}
+                    maxlength={Validate.isEmpty(props.max) ? "" : props.max}
                 />
                 <label htmlFor={props.id}>{props.name}</label>
                 {inputType == "password" ?

@@ -37,3 +37,44 @@
     top: calc(100% + -4px);
     z-index: 9999;
 }
+
+.form.register-form .select {
+    width: calc(100% - 30px);
+    margin-bottom: 25px;
+    padding: 10px 15px;
+}
+
+.form.register-form .select .select-visible-part {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.form.register-form .select .select-selected-option span {
+    font-weight: normal;
+    font-size: 25px;
+}
+
+.form.register-form .select .select-drop-down-list img {
+    display: none;
+}
+
+.form.register-form .select .select-drop-down-list .option span {
+    font-weight: normal;
+    font-size: 24px;
+    text-align: left;
+    padding: 14px 15px;
+    border-bottom: 1px solid #efefef;
+    margin: 0;
+}
+
+.form.register-form .select-field.open .select-drop-down-list {
+    padding: 0;
+    max-height: initial;
+}
+.form.register-form .select-selected-option.option-0 {
+    color: #CBCBCB;
+}
+div#register_gender_selector_container.valid .select {
+    border: 2px solid limegreen;
+}

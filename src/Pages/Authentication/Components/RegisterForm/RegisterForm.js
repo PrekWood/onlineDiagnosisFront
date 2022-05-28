@@ -6,6 +6,7 @@ import LoadingAnimation from "../../../../SharedComponents/LoadingAnimation/Load
 import SubmitButton from "../../../../SharedComponents/SubmitButton/SubmitButton";
 import InputField from "../../../../SharedComponents/InputField/InputField";
 import reportWebVitals from "../../../../reportWebVitals";
+import Select from "../../../../SharedComponents/Select/Select";
 
 function RegisterForm(props) {
 
@@ -25,7 +26,7 @@ function RegisterForm(props) {
     }, [props.isActive]);
 
 
-    function signUp(event) {
+    function register(event) {
         event.preventDefault();
 
         // Get form fields
@@ -33,6 +34,8 @@ function RegisterForm(props) {
         let firstName = null;
         let email = null;
         let password = null;
+        let year = null;
+        let gender = null;
         const formFields = event.target.elements;
         for (let formFieldIndex = 0; formFieldIndex < formFields.length; formFieldIndex++) {
             if (formFields[formFieldIndex].id === "register_first_name") {
@@ -46,6 +49,12 @@ function RegisterForm(props) {
             }
             if (formFields[formFieldIndex].id === "register_password") {
                 password = formFields[formFieldIndex].value
+            }
+            if (formFields[formFieldIndex].id === "register_year") {
+                year = formFields[formFieldIndex].value
+            }
+            if (formFields[formFieldIndex].id === "register_gender") {
+                gender = formFields[formFieldIndex].value
             }
         }
 
@@ -67,6 +76,9 @@ function RegisterForm(props) {
         user.lastName = lastName;
         user.email = email;
         user.password = password;
+        user.gender = gender;
+        user.year = year;
+
         user.register(
             (response) => {
                 setLoadingAnimation(false);
@@ -88,12 +100,41 @@ function RegisterForm(props) {
         );
     }
 
+    const GENDER_OPTIONS = [
+        {
+            id:0,
+            name:"Gender",
+            value:"",
+            placeholder:true
+        },
+        {
+            id:1,
+            name:"Girl",
+            value:"girl",
+        },
+        {
+            id:2,
+            name:"Boy",
+            value:"boy",
+        },
+        {
+            id:3,
+            name:"Man",
+            value:"man",
+        },
+        {
+            id:4,
+            name:"Woman",
+            value:"woman",
+        }
+    ]
+
     return (
         <>
             <div className={`form register-form ${registerFormState}`}>
                 <div className={"inner-form"}>
                     <h2>Sign up</h2>
-                    <form onSubmit={signUp}>
+                    <form onSubmit={register}>
                         <InputField
                             id="register_first_name"
                             name="First Name"
@@ -106,6 +147,23 @@ function RegisterForm(props) {
                             variation="half"
                             validation={[Validate.isNotEmpty, Validate.containsOnlyLetters]}
                         />
+                        <InputField
+                            id="register_year"
+                            name="Year of birth"
+                            max="4"
+                            validation={[Validate.containsOnlyNumbers, Validate.has4Characters]}
+                        />
+                        <div id={"register_gender_selector_container"}>
+                            <Select
+                                id="register_gender"
+                                name="Gender"
+                                options={GENDER_OPTIONS}
+                                callBack={()=>{
+                                    document.getElementById("register_gender_selector_container").classList
+                                        .add('valid');
+                                }}
+                            />
+                        </div>
                         <InputField
                             id="register_email"
                             name="E-mail"
