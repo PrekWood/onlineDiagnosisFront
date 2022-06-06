@@ -53,14 +53,6 @@ export default class User extends Model {
     register(successMethod, errorMethod) {
         const thisUser = this;
 
-        console.log({
-            firstName: this.firstName,
-            lastName: this.lastName,
-            email: this.email,
-            password: this.password,
-            gender: this.gender,
-            year: this.year,
-        });
 
         // First Register
         axios({
@@ -165,7 +157,6 @@ export default class User extends Model {
         localStorage.setItem("loggedInUser", null);
     }
 
-
     getUserDetails(successMethod, errorMethod) {
         axios({
             method: 'get',
@@ -177,124 +168,38 @@ export default class User extends Model {
             errorMethod(error);
         });
     }
-    //
-    // static getUserDetailsByEmail(email, successMethod, errorMethod) {
-    //     const loggedInUser = User.loadUserFromLocalStorage();
-    //     const authToken = loggedInUser.token;
-    //     axios({
-    //         method: 'get',
-    //         url: `${window.API_URL}/user?email=${email}`,
-    //         headers: Model.getHeaders(authToken),
-    //     }).then(function (response) {
-    //         successMethod(response);
-    //     }).catch(function (error) {
-    //         errorMethod(error);
-    //     });
-    // }
 
-
-    //
-    // checkIfLogedIn(successMethod, errorMethod) {
-    //     console.log("checkIfLogedIn");
-    //     axios({
-    //         method: 'post',
-    //         url: `${window.API_URL}/registration/is-loged-in`,
-    //         headers: this.getHeaders(this.token),
-    //     }).then(function (response) {
-    //         console.log("checkIfLogedIn success");
-    //         successMethod(response);
-    //     }).catch(function (error) {
-    //         console.log("checkIfLogedIn error");
-    //         errorMethod(error);
-    //     });
-    // }
-    //
-    // getFiles(contextName, successMethod, errorMethod, isRecent = false) {
-    //     const context = LayoutContext.getContext(contextName);
-    //     const sortingPrefs = context.sortingPreferences;
-    //     const currentFolder = context.currentFolder;
-    //
-    //     let ajaxUrl = `${window.API_URL}/files`;
-    //     if (Validate.isNotEmpty(sortingPrefs.orderBy) && Validate.isNotEmpty(sortingPrefs.orderWay)) {
-    //         ajaxUrl += `/${sortingPrefs.orderBy}/${sortingPrefs.orderWay}`;
-    //     }
-    //     if (Validate.isNotEmpty(sortingPrefs.searchQuery)) {
-    //         ajaxUrl += `?searchQuery=${sortingPrefs.searchQuery}`;
-    //     }
-    //     if (Validate.isNotEmpty(sortingPrefs.onlyFavorites) && sortingPrefs.onlyFavorites) {
-    //         ajaxUrl += `${ajaxUrl.includes("?") ? "&" : "?"}onlyFavorites=true`;
-    //     }
-    //     if (!isRecent) {
-    //         if (Validate.isNotEmpty(currentFolder) && Validate.isNotEmpty(currentFolder.id)) {
-    //             ajaxUrl += `${ajaxUrl.includes("?") ? "&" : "?"}folderId=${currentFolder.id}`;
-    //         } else {
-    //             ajaxUrl += `${ajaxUrl.includes("?") ? "&" : "?"}folderId=-1`;
-    //         }
-    //     } else {
-    //         ajaxUrl += `${ajaxUrl.includes("?") ? "&" : "?"}allFiles=true&folderId=-1`;
-    //     }
-    //
-    //     axios({
-    //         method: 'get',
-    //         url: ajaxUrl,
-    //         headers: this.getHeaders(this.token),
-    //         data: {}
-    //     }).then(function (response) {
-    //         successMethod(response);
-    //     }).catch(function (error) {
-    //         errorMethod(error);
-    //     });
-    // }
-    //
-    // static clearDataFromLocalStorage() {
-    //     localStorage.setItem("allFilesContext", null);
-    //     localStorage.setItem("currentFolder", null);
-    //     localStorage.setItem("loggedInUser", null);
-    //     localStorage.setItem("recentFilesContext", null);
-    //     localStorage.setItem("sharedFilesContext", null);
-    //     localStorage.setItem("sortingPreferences", null);
-    // }
+    getDiagnosis(successMethod, errorMethod) {
+        axios({
+            method: 'post',
+            url: `${window.API_URL}/diagnosis/`,
+            headers: this.getHeaders(this.token),
+        }).then(function (response) {
+            successMethod(response);
+        }).catch(function (error) {
+            errorMethod(error);
+        });
+    }
 
 
 
-    // updateImage(fileToUpload, successMethod, errorMethod) {
-    //     const formData = new FormData()
-    //     formData.append("file", fileToUpload);
-    //
-    //     axios.put(
-    //         `${window.API_URL}/user/image`,
-    //         formData,
-    //         {
-    //             headers: {
-    //                 'accept': 'application/json',
-    //                 'Accept-Language': 'en-US,en;q=0.8',
-    //                 'Authorization': `Bearer ${this.token}`,
-    //                 'Content-Type': `multipart/form-data`,
-    //             }
-    //         }
-    //     ).then((response) => {
-    //         successMethod(response);
-    //     }).catch((error) => {
-    //         errorMethod(error);
-    //     });
-    // }
-    //
-    // update(successMethod, errorMethod) {
-    //     axios({
-    //         method: 'put',
-    //         url: `${window.API_URL}/user`,
-    //         headers: this.getHeaders(this.token),
-    //         data:{
-    //             firstName:this.firstName,
-    //             lastName:this.lastName,
-    //             phoneNumber:this.phoneNumber,
-    //         }
-    //     }).then(function (response) {
-    //         successMethod(response);
-    //     }).catch(function (error) {
-    //         errorMethod(error);
-    //     });
-    // }
-
+    update(successMethod, errorMethod) {
+        axios({
+            method: 'put',
+            url: `${window.API_URL}/user`,
+            headers: this.getHeaders(this.token),
+            data:{
+                firstName:this.firstName,
+                lastName:this.lastName,
+                email:this.email,
+                year:this.year,
+                gender:this.gender
+            }
+        }).then(function (response) {
+            successMethod(response);
+        }).catch(function (error) {
+            errorMethod(error);
+        });
+    }
 
 }

@@ -1,0 +1,29 @@
+
+
+.symptom {
+    padding: 35px 25px;
+    font-size: 22px;
+    background: #efefef;
+    border-bottom: 1px solid #e5e5e5;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+button.add-symptom {
+    background: unset;
+    border: unset;
+    height: 25px;
+    cursor: pointer;
+}
+button.add-symptom svg {
+    width: 25px;
+    height: 25px;
+}
+
+.symptom.selected {
+    background: #c4c6ff;
+    border-bottom: 1px solid #c4c6ff;
+    color: white;
+}

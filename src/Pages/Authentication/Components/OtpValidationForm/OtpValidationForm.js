@@ -4,6 +4,7 @@ import Validate from "../../../../Classes/Validate";
 import SubmitButton from "../../../../SharedComponents/SubmitButton/SubmitButton";
 import LoadingAnimation from "../../../../SharedComponents/LoadingAnimation/LoadingAnimation";
 import InputField from "../../../../SharedComponents/InputField/InputField";
+import TranslatedText from "../../../../SharedComponents/TranslatedText/TranslatedText";
 
 
 function OtpValidationForm(props) {
@@ -69,8 +70,18 @@ function OtpValidationForm(props) {
         <>
             <div className={`form otp-validation-form ${otpValidationFormState}`}>
                 <div className={"inner-form"}>
-                    <h2>PIN Validation</h2>
-                    <span className={"text"}>Please input the PIN number that you received on your smartphone</span>
+                    <h2>
+                        <TranslatedText
+                            text={"PIN Validation"}
+                            language={props.language}
+                        />
+                    </h2>
+                    <span className={"text"}>
+                        <TranslatedText
+                            text={"Please input the PIN number that you received on your smartphone"}
+                            language={props.language}
+                        />
+                    </span>
                     <form onSubmit={validateOtp}>
                         <div className="pin-number-fields">
                             <InputField
@@ -79,13 +90,27 @@ function OtpValidationForm(props) {
                                 type={"number"}
                                 validation={[Validate.isNotEmpty, Validate.containsOnlyNumbers]}
                                 variation="pin"
+                                language={props.language}
                             />
                         </div>
-                        <SubmitButton text="Submit"/>
+                        <SubmitButton
+                            text="Submit"
+                            language={props.language}
+                        />
                     </form>
-                    <span className={`errors ${errors == "" ? "hidden" : ""}`}>{errors}</span>
+                    <span className={`errors ${errors == "" ? "hidden" : ""}`}>
+                        <TranslatedText
+                            text={errors}
+                            language={props.language}
+                        />
+                    </span>
                     <LoadingAnimation state={showLoadingAnimation}/>
-                    <a className="form-link" onClick={resendSms}>Didn't get an SMS? Let us re resend it. </a>
+                    <a className="form-link" onClick={resendSms}>
+                        <TranslatedText
+                            text={"Did not get an SMS? Let us re resend it."}
+                            language={props.language}
+                        />
+                    </a>
                 </div>
             </div>
         </>

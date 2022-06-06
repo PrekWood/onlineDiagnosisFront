@@ -1,6 +1,6 @@
 .SymptomsList main {
     background: #F2F4FF;
-    width: calc(100vw - 120px);
+    width: calc(100vw - 135px);
     height: 100vh;
     display: block;
     margin-left: 120px;
@@ -26,6 +26,7 @@
     display: flex;
     align-items: flex-start;
 }
+
 .SymptomsList main {
     background: #F2F4FF;
     width: calc(100vw - 120px);
@@ -54,3 +55,14 @@
     display: flex;
     align-items: flex-start;
 }
+
+
+.body-sublocation-list,
+.body-part-list,
+.symptoms-list {
+    width: calc(calc(100vw - 210px) / 3);
+    max-height: calc(100vh - 200px);
+    overflow: auto;
+    position: relative;
+}
+

@@ -55,16 +55,41 @@ export default class Language extends Model{
     }
 
     static getDefaultLang(){
+        const langFromStorage = Language.loadLangFromLocalStorage();
+        if(langFromStorage != null){
+            return langFromStorage;
+        }
+
         const lang = new Language();
         lang.name = "English";
         lang.iso_code = "en";
         lang.image = "gb.svg";
         return lang
     }
+    static loadLangFromLocalStorage() {
+        let lang = localStorage.getItem("language");
+        if (lang == null || lang == "" || lang == undefined) {
+            return null;
+        }
 
+        let langObj = null;
+        try {
+            langObj = JSON.parse(lang);
+        } catch (e) {
+            return null;
+        }
 
+        if (langObj == null) {
+            return null;
+        }
 
-    isLang(){
-        return true;
+        const langToReturn = new Language();
+        for (const property in langObj) {
+            langToReturn[property] = langObj[property];
+        }
+        return langToReturn;
+    }
+    static saveUserToLocalStorage(lang){
+        localStorage.setItem("language", JSON.stringify(lang));
     }
 }

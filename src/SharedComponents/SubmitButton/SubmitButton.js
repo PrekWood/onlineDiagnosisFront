@@ -1,6 +1,7 @@
 import React from 'react';
 import './SubmitButton.css';
 import Validate from "../../Classes/Validate";
+import TranslatedText from "../TranslatedText/TranslatedText";
 
 function SubmitButton(props) {
 
@@ -17,7 +18,10 @@ function SubmitButton(props) {
                 onClick={onClickFunction}
             >
                 {Validate.isEmpty(props.svg) ? "" : <img src={props.svg} />}
-                {props.text}
+                <TranslatedText
+                    text={props.text}
+                    language={props.language}
+                />
             </button>
         </>
     );

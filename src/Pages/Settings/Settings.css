@@ -1,0 +1,86 @@
+.Settings main {
+    background: #F2F4FF;
+    width: calc(100vw - 135px);
+    height: 100%;
+    display: block;
+    margin-left: 120px;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    align-items: center;
+}
+
+.settings-container {
+    width: calc(50% - 100px);
+    margin-top: 30px;
+    position: relative;
+    border-radius: 10px;
+    padding: 50px 50px 30px 50px;
+    background: white;
+    height: max-content;
+}
+
+
+.settings-container .select {
+    width: calc(100% - 10px);
+    margin-bottom: 30px;
+    height: auto;
+    padding:0;
+}
+
+.settings-container .select .select-visible-part {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 13px 15px;
+}
+
+.settings-container .select .select-selected-option span {
+    font-weight: normal;
+    font-size: 25px;
+}
+
+.settings-container .select .select-drop-down-list img {
+    display: none;
+}
+
+.settings-container .select .select-drop-down-list .option span {
+    font-weight: normal;
+    font-size: 24px;
+    text-align: left;
+    padding: 14px 15px;
+    border-bottom: 1px solid #efefef;
+    margin: 0;
+}
+
+.settings-container .select-field.open .select-drop-down-list {
+    padding: 0;
+    max-height: initial;
+}
+.settings-container .select-selected-option.option-0 {
+    color: #CBCBCB;
+}
+div#register_gender_selector_container.valid .select {
+    border: 2px solid limegreen;
+}
+.settings-container h1 {
+    text-align: center;
+    margin: 0  0 50px;
+    display: block;
+    font-size: 50px;
+}
+span.success {
+    display: block;
+    width: calc(100% - 20px);
+    background: limegreen;
+    color: white;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    opacity: .7;
+    text-align: center;
+}
+span.success.hidden {
+    display: none;
+}
+

@@ -8,6 +8,8 @@ export default class Model {
     getHeaders(authToken = null, fileUpload = false) {
         let headers = {
             "Cache-Control": "no-cache",
+            'Pragma': 'no-cache',
+            'Expires': '0',
             "Accept-Language": "en",
             "Content-Type": 'application/json',
             "Access-Control-Allow-Origin": '*',

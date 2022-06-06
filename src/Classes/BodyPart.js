@@ -1,6 +1,7 @@
 import Model from "./Model";
 import axios from "axios";
 import User from "./User";
+import Symptom from "./Symptom";
 
 export default class BodyPart extends Model{
     constructor() {
@@ -62,6 +63,27 @@ export default class BodyPart extends Model{
             }
             bodyPart.subLocations = bodyPartsObj;
             successMethod(bodyPart);
+        }).catch(function (error) {
+            errorMethod(error);
+        });
+
+    }
+
+    getSymptoms(successMethod, errorMethod){
+
+        const user = User.loadUserFromLocalStorage();
+
+        axios({
+            method: 'get',
+            url: `${window.API_URL}/body-parts/${this.id}/symptoms`,
+            headers: this.getHeaders(user.token),
+        }).then(function (response) {
+            const symptomsList = response.data;
+            let symptomsObjList = [];
+            for(let symptomIndex = 0; symptomIndex < symptomsList.length; symptomIndex++){
+                symptomsObjList.push(Symptom.castToSymptom(symptomsList[symptomIndex]))
+            }
+            successMethod(symptomsObjList);
         }).catch(function (error) {
             errorMethod(error);
         });

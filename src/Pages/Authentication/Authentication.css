@@ -75,17 +75,18 @@ img#logo {
     display: none;
 }
 
-.form-link{
+.form-link {
     cursor: pointer;
     text-align: center;
     display: block;
-    margin:auto;
-}
-.form-link:hover{
-    color:#7d83ff;
+    margin: auto;
 }
 
-span.errors.hidden{
+.form-link:hover {
+    color: #7d83ff;
+}
+
+span.errors.hidden {
     display: none;
 }
 
@@ -97,3 +98,22 @@ span.errors {
     border-radius: 5px;
     margin-bottom: 10px;
 }
+
+.Authentication .language-select {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 120px;
+}
+
+.Authentication .select-filter {
+    z-index: 999999;
+    left: 0;
+}
+
+.Authentication .select-field.language-select.open .select-drop-down-list {
+    z-index: 1000000;
+    position: fixed;
+    left: 0;
+}
+

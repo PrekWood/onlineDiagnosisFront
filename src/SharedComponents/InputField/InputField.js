@@ -3,6 +3,7 @@ import './InputField.css';
 import visibleSvg from './imgs/visible.svg';
 import hiddenSvg from './imgs/hidden.svg';
 import Validate from "../../Classes/Validate";
+import TranslatedText from "../TranslatedText/TranslatedText";
 
 
 function InputField(props) {
@@ -79,9 +80,14 @@ function InputField(props) {
                     placeholder={props.name}
                     defaultValue={defaultValue}
                     onKeyUp={onKeyUp}
-                    maxlength={Validate.isEmpty(props.max) ? "" : props.max}
+                    maxLength={Validate.isEmpty(props.max) ? "" : props.max}
                 />
-                <label htmlFor={props.id}>{props.name}</label>
+                <label htmlFor={props.id}>
+                    <TranslatedText
+                        text={props.name}
+                        language={props.language}
+                    />
+                </label>
                 {inputType == "password" ?
                     <button className="show-password" onClick={showPassword}>
                         <img src={passwordVisible ? hiddenSvg : visibleSvg} />

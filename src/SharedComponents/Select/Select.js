@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import './Select.css';
 import arrowSvg from './imgs/arrow.svg';
 import Validate from '../../Classes/Validate';
+import Option from "./Components/Option/Option";
+import TranslatedText from "../TranslatedText/TranslatedText";
 
 export default function Select(props) {
 
@@ -14,7 +16,7 @@ export default function Select(props) {
         if (!Validate.isArrayEmpty(props.options)) {
             const optionsWithSelectedAttr = props.options.filter((option) => { return option.selected });
             if (selectedOption == null) {
-                if (optionsWithSelectedAttr.length == 1) {
+                if (optionsWithSelectedAttr.length === 1) {
                     setSelectedOption(optionsWithSelectedAttr[0]);
                 } else {
                     setSelectedOption(props.options[0]);
@@ -58,9 +60,9 @@ export default function Select(props) {
                             id={props.id}
                             value={Validate.isEmpty(selectedOption.value) ? selectedOption.id : selectedOption.value}
                         >
-                            {options.map((option) => (
+                            {options.map(option => (
                                 <option
-                                    key={option.id}
+                                    key={`option-s-${option.id}`}
                                     value={Validate.isEmpty(option.value) ? option.id : option.value}
                                 >{option.name}</option>
                             ))}
@@ -69,25 +71,23 @@ export default function Select(props) {
                             <div className="select-visible-part" onClick={openDropDownList}>
                                 <div className={`select-selected-option option-${selectedOption.id}`}>
                                     <img src={selectedOption.svg == "" ? "" : selectedOption.svg} />
-                                    <span>{selectedOption.name}</span>
+                                    <span>
+                                        <TranslatedText
+                                            text={selectedOption.name}
+                                            language={props.language}
+                                        />
+                                    </span>
                                 </div>
                                 <img className="select-arrow" src={arrowIcon} />
                             </div>
                             <div className="select-drop-down-list">
-                                {options.map((option) => (
-                                    <>
-                                        {"placeholder" in option && option.placeholder?"":
-                                            (
-                                                <div className="option"
-                                                     key={option.id}
-                                                     onClick={(e) => { selectOption(option); }}
-                                                >
-                                                    <img src={Validate.isEmpty(option.svg) ? "" : option.svg} />
-                                                    <span>{option.name}</span>
-                                                </div>
-                                            )
-                                        }
-                                    </>
+                                {options.map(option => (
+                                    <Option
+                                        key={`option-${option.id}`}
+                                        option={option}
+                                        selectOption={selectOption}
+                                        language={props.language}
+                                    />
                                 ))}
                             </div>
                         </div>

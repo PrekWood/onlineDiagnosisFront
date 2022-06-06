@@ -5,6 +5,8 @@ import User from "../../../../Classes/User";
 import InputField from "../../../../SharedComponents/InputField/InputField";
 import SubmitButton from "../../../../SharedComponents/SubmitButton/SubmitButton";
 import LoadingAnimation from "../../../../SharedComponents/LoadingAnimation/LoadingAnimation";
+import TranslatedText from "../../../../SharedComponents/TranslatedText/TranslatedText";
+import Language from "../../../../Classes/Language";
 
 
 function LoginForm(props) {
@@ -13,7 +15,6 @@ function LoginForm(props) {
     const [loginFormState, setLoginFormState] = useState(true);
     const [loadingAnimationStatus, setLoadingAnimationStatus] = useState(false);
     const [errors, setErrors] = useState(null);
-
 
     useEffect(() => {
         if (props.isActive == null) {
@@ -81,26 +82,44 @@ function LoginForm(props) {
         <>
             <div className={`form login-form ${loginFormState}`}>
                 <div className={"inner-form"}>
-                    <h2>Login</h2>
+                    <h2>
+                        <TranslatedText
+                            text={"Login"}
+                            language={props.language}
+                        />
+                    </h2>
                     <form onSubmit={submitLogin}>
                         <InputField
                             id="login_email"
                             name="E-mail"
-                            validation={Validate.isEmail}/>
+                            validation={Validate.isEmail}
+                            language={props.language}
+                        />
                         <InputField
                             id="login_password"
                             name="Password"
                             type="password"
-                            validation={[Validate.isNotEmpty, Validate.hasAtLeast8Chars, Validate.containsNumber]}/>
-                        <SubmitButton text="Log in"/>
+                            validation={[Validate.isNotEmpty, Validate.hasAtLeast8Chars, Validate.containsNumber]}
+                            language={props.language}
+                        />
+                        <SubmitButton
+                            text="Log in"
+                            language={props.language}
+                        />
                     </form>
                     <span className={`errors ${errors == null ? "hidden" : ""}`}>
-                        {errors}
+                        <TranslatedText
+                            text={errors}
+                            language={props.language}
+                        />
                     </span>
                     <a className="form-link" onClick={() => {
                         props.setCurrentForm("register")
                     }}>
-                        Dont't have an account? Sign up here
+                        <TranslatedText
+                            text="Do not have an account? Sign up here"
+                            language={props.language}
+                        />
                     </a>
 
 

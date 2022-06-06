@@ -1,0 +1,113 @@
+.Diagnosis main {
+    background: #F2F4FF;
+    width: calc(100vw - 135px);
+    height: 100%;
+    display: block;
+    margin-left: 120px;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.Diagnosis {
+    overflow: hidden;
+}
+
+.diagnosis-results:not(.empty) {
+    height: max-content;
+}
+
+.diagnosis-results {
+    width: calc(50% - 100px);
+    margin-top: 30px;
+    position: relative;
+}
+
+
+.diagnosis-results .doctors-container > span,
+.diagnosis-results .issue-container > span
+{
+    font-size: 31px;
+    padding: 20px 0;
+    text-align: center;
+    display: block;
+}
+
+.diagnosis-issue {
+    padding: 20px 0;
+}
+
+.issue-info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.diagnosis-issue:last-child {
+    padding-bottom: 0;
+}
+
+.diagnosis-issue span {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+span.issue-propability {
+    color: #7D83FF;
+}
+
+.diagnosis-results .loading-animation.active {
+    border-radius: 10px;
+}
+
+.svg-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 50px 50px 50px;
+    transform: scale(.1);
+    transition:transform .2s ease;
+    animation: checkAnimation 1s forwards;
+}
+@keyframes checkAnimation{
+    0% {
+        transform: scale(.1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+.diagnosis-results.empty > .doctors-container,
+.diagnosis-results.empty > .issue-container
+{
+    display: none;
+}
+.diagnosis-results > * {
+    background: white;
+    margin-top: 30px;
+    border-radius: 10px;
+    margin-bottom: 50px;
+    padding: 50px 50px 30px 50px;
+}
+
+.svg-center img, .svg-center svg {
+    max-width: 250px;
+}
+span.issue-desc {
+    font-weight: normal;
+    font-size: 15px;
+    color: #b9b9b9;
+    line-height: 19px;
+    margin-top: 20px;
+    display: block;
+}
+
+.sorry-container span {
+    font-size: 24px;
+    margin-bottom: 20px;
+    display: block;
+    text-align: center;
+}

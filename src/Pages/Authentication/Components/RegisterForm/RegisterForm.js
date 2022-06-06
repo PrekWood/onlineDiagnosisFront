@@ -7,6 +7,7 @@ import SubmitButton from "../../../../SharedComponents/SubmitButton/SubmitButton
 import InputField from "../../../../SharedComponents/InputField/InputField";
 import reportWebVitals from "../../../../reportWebVitals";
 import Select from "../../../../SharedComponents/Select/Select";
+import TranslatedText from "../../../../SharedComponents/TranslatedText/TranslatedText";
 
 function RegisterForm(props) {
 
@@ -109,23 +110,13 @@ function RegisterForm(props) {
         },
         {
             id:1,
-            name:"Girl",
-            value:"girl",
+            name:"Male",
+            value:"male",
         },
         {
             id:2,
-            name:"Boy",
-            value:"boy",
-        },
-        {
-            id:3,
-            name:"Man",
-            value:"man",
-        },
-        {
-            id:4,
-            name:"Woman",
-            value:"woman",
+            name:"Female",
+            value:"female",
         }
     ]
 
@@ -133,25 +124,33 @@ function RegisterForm(props) {
         <>
             <div className={`form register-form ${registerFormState}`}>
                 <div className={"inner-form"}>
-                    <h2>Sign up</h2>
+                    <h2>
+                        <TranslatedText
+                            text={"Sign up"}
+                            language={props.language}
+                        />
+                    </h2>
                     <form onSubmit={register}>
                         <InputField
                             id="register_first_name"
                             name="First Name"
                             variation="half"
                             validation={[Validate.isNotEmpty, Validate.containsOnlyLetters]}
+                            language={props.language}
                         />
                         <InputField
                             id="register_last_name"
                             name="Last Name"
                             variation="half"
                             validation={[Validate.isNotEmpty, Validate.containsOnlyLetters]}
+                            language={props.language}
                         />
                         <InputField
                             id="register_year"
                             name="Year of birth"
                             max="4"
                             validation={[Validate.containsOnlyNumbers, Validate.has4Characters]}
+                            language={props.language}
                         />
                         <div id={"register_gender_selector_container"}>
                             <Select
@@ -162,27 +161,39 @@ function RegisterForm(props) {
                                     document.getElementById("register_gender_selector_container").classList
                                         .add('valid');
                                 }}
+                                language={props.language}
                             />
                         </div>
                         <InputField
                             id="register_email"
                             name="E-mail"
                             validation={Validate.isEmail}
+                            language={props.language}
                         />
                         <InputField
                             id="register_password"
                             name="Password"
                             type="password"
                             validation={[Validate.isNotEmpty, Validate.hasAtLeast8Chars, Validate.containsNumber]}
+                            language={props.language}
                         />
-                        <SubmitButton text="Sign up"/>
+                        <SubmitButton
+                            text="Sign up"
+                            language={props.language}
+                        />
                         <span className={`errors ${errors == null ? "hidden" : ""}`}>
-                            {errors}
+                            <TranslatedText
+                                text={errors}
+                                language={props.language}
+                            />
                         </span>
                         <a className="form-link" onClick={() => {
                             props.setCurrentForm("login");
                         }}>
-                            Already have an account? Log in here
+                            <TranslatedText
+                                text={"Already have an account? Log in here"}
+                                language={props.language}
+                            />
                         </a>
                     </form>
 

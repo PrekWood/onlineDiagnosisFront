@@ -1,0 +1,92 @@
+.user-symptoms-list {
+    position: absolute;
+    top: 35px;
+    right: 50px;
+}
+
+.user-symptoms-list img {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+}
+
+.symptoms-count {
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: #7d83ff;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 16px;
+}
+
+.user-symptoms-list-items {
+    position: absolute;
+    top: calc(100% + 20px);
+    right: 0;
+    width: 20vw;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all .5s ease;
+    z-index: 99;
+}
+
+.user-symptoms-list:hover .user-symptoms-list-items {
+    opacity: 1;
+    max-height: 50vh;
+    overflow: auto;
+}
+
+button.remove-symptom {
+    border: unset;
+    background: transparent;
+    height: 30px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+button.remove-symptom svg {
+    width: 20px;
+    height: 20px;
+}
+
+.user-symptom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 22px;
+    padding: 15px 0;
+    border-bottom: 1px solid whitesmoke;
+}
+
+.user-symptom:last-child {
+    border-bottom: unset;
+    padding-bottom: 0;
+}
+
+#proceed_to_diagnosis {
+    width: 100%;
+    cursor: pointer;
+    background: #7d83ff;
+    border: unset;
+    color: white;
+    font-size: 21px;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: normal;
+}
+
+.user-symptoms-list.empty .user-symptoms-list-items {
+    display: none;
+}

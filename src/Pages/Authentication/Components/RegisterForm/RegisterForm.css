@@ -71,6 +71,7 @@
 .form.register-form .select-field.open .select-drop-down-list {
     padding: 0;
     max-height: initial;
+    z-index: 1000000000;
 }
 .form.register-form .select-selected-option.option-0 {
     color: #CBCBCB;

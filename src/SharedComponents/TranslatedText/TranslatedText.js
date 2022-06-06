@@ -20,7 +20,7 @@ export default function TranslatedText(props) {
                 }
             );
         }
-    },[props.language])
+    },[props.language, props.text])
 
     if (!("text" in props) || !("language" in props)) {
         return <b>

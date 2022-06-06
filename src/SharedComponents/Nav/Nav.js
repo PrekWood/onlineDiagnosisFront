@@ -55,6 +55,7 @@ function Nav(props) {
 
                 <LanguageSelector
                     setLanguage={props.setLanguage}
+                    language={props.language}
                 />
             </nav>
         </>

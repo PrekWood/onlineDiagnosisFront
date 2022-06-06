@@ -1,6 +1,5 @@
 .body-part-list {
     margin-left: 45px;
-    width: 30vw;
 }
 
 .body-part {
@@ -9,6 +8,24 @@
     background: white;
     border-bottom: 1px solid whitesmoke;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.body-part .active-arrow {
+    display: none;
+}
+
+.body-part:hover .active-arrow,
+.body-part.selected .active-arrow{
+    display: block;
+}
+
+.body-part:hover .inactive-arrow,
+.body-part.selected .inactive-arrow
+{
+    display: none;
 }
 
 
@@ -16,7 +33,16 @@
     border: unset;
 }
 
-.body-part:hover {
-    background: #C4C6FF;
+.body-part:hover,
+.body-part.selected {
+    background: #C4C6FF !important;
     color: white;
+}
+.arrow-container {
+    max-height: 23px;
+}
+
+.body-part svg {
+    width: 15px;
+    height: auto;
 }
