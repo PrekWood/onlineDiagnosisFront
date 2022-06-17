@@ -45,12 +45,13 @@ export default function Settings() {
         {
             id:1,
             name:"Male",
-            value:"male",
+            value:"male"
         },
         {
             id:2,
             name:"Female",
             value:"female",
+            selected:true
         }
     ]
 
@@ -67,9 +68,9 @@ export default function Settings() {
         // Get form fields
         let lastName = null;
         let firstName = null;
-        let email = null;
+        // let email = null;
         let year = null;
-        let gender = null;
+        // let gender = null;
         const formFields = event.target.elements;
         for (let formFieldIndex = 0; formFieldIndex < formFields.length; formFieldIndex++) {
             if (formFields[formFieldIndex].id === "update_first_name") {
@@ -78,24 +79,24 @@ export default function Settings() {
             if (formFields[formFieldIndex].id === "update_last_name") {
                 lastName = formFields[formFieldIndex].value
             }
-            if (formFields[formFieldIndex].id === "update_email") {
-                email = formFields[formFieldIndex].value
-            }
+            // if (formFields[formFieldIndex].id === "update_email") {
+            //     email = formFields[formFieldIndex].value
+            // }
             if (formFields[formFieldIndex].id === "update_year") {
                 year = formFields[formFieldIndex].value
             }
-            if (formFields[formFieldIndex].id === "update_gender") {
-                gender = formFields[formFieldIndex].value
-            }
+            // if (formFields[formFieldIndex].id === "update_gender") {
+            //     gender = formFields[formFieldIndex].value
+            // }
         }
 
         // Validate fields
         if (!(
             Validate.isNotEmpty(firstName) && Validate.containsOnlyLetters(firstName) &&
             Validate.isNotEmpty(lastName) && Validate.containsOnlyLetters(lastName) &&
-            Validate.isEmail(email) &&
-            Validate.containsOnlyNumbers(year) && Validate.has4Characters(year) &&
-            (gender === "male" || gender === "female")
+            // Validate.isEmail(email) &&
+            Validate.containsOnlyNumbers(year) && Validate.has4Characters(year)
+            // (gender === "male" || gender === "female")
         )) {
             setErrors("Invalid fields")
             setSuccessMsg(null);
@@ -104,9 +105,9 @@ export default function Settings() {
 
         user.firstName = firstName;
         user.lastName = lastName;
-        user.email = email;
+        // user.email = email;
         user.year = year;
-        user.gender = gender;
+        // user.gender = gender;
         user.update(()=>{
             setErrors(null);
             setSuccessMsg("Update was successful");
@@ -128,6 +129,7 @@ export default function Settings() {
         });
         return genderOptions;
     }
+
     return <>
         <div className={"Settings"}>
             <main>
@@ -163,7 +165,7 @@ export default function Settings() {
                             validation={[Validate.containsOnlyNumbers, Validate.has4Characters]}
                             language={language}
                         />
-                        <div id={"update_gender_selector_container"}>
+                        {/*<div id={"update_gender_selector_container"}>
                             <Select
                                 id="update_gender"
                                 name="Gender"
@@ -174,14 +176,14 @@ export default function Settings() {
                                 }}
                                 language={language}
                             />
-                        </div>
-                        <InputField
+                        </div>*/}
+                        {/*<InputField
                             id="update_email"
                             name="E-mail"
                             defaultValue={user.email}
                             validation={Validate.isEmail}
                             language={language}
-                        />
+                        />*/}
                         <SubmitButton
                             text="Sign up"
                             language={language}

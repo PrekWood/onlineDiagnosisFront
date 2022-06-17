@@ -92,6 +92,10 @@ function RegisterForm(props) {
             },
             (request) => {
                 setLoadingAnimation(false);
+                if(request.response.status === 409){
+                    setErrors("Your e-mail is already being used.");
+                    return
+                }
                 if(Validate.isNotEmpty(request.response.data)){
                     setErrors(request.response.data.error);
                 }else{

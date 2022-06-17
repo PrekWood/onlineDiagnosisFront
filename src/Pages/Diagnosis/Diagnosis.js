@@ -38,8 +38,6 @@ export default function Diagnosis() {
             return ;
         }
 
-
-
         user.getDiagnosis((diagnosis)=>{
             setDiagnosis(diagnosis.data);
             Symptom.emptySymptomsList(()=>{

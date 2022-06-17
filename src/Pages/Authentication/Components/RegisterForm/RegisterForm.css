@@ -7,7 +7,7 @@
     background: #efefef;
     padding: 10px;
     font-size: 20px;
-    content: "Password must be at least 8 characters and should contain both letters and numbers";
+    content: "Password must be at least 9 characters and should contain both letters and numbers";
     border-radius: 5px;
     opacity: 0;
     transition: all 1s ease;

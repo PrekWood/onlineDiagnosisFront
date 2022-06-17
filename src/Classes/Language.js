@@ -19,11 +19,10 @@ export default class Language extends Model{
     }
 
     static loadBodyPartList(successMethod, errorMethod){
-        const user = User.loadUserFromLocalStorage();
         axios({
             method: 'get',
             url: `${window.API_URL}/languages`,
-            headers: this.getHeaders(user.token),
+            headers: this.getHeaders(),
         }).then(function (response) {
             const availableLanguages = response.data;
             let availableLanguagesObj = [];
@@ -38,11 +37,10 @@ export default class Language extends Model{
     }
 
     translate(text, successMethod, errorMethod){
-        const user = User.loadUserFromLocalStorage();
         axios({
             method: 'post',
             url: `${window.API_URL}/translate/`,
-            headers: this.getHeaders(user.token),
+            headers: this.getHeaders(),
             data: {
                 tl: this.iso_code,
                 text: text,
